@@ -3,3 +3,9 @@
 @tailwind utilities;
 
 /* Custom styles can go here */
+
+/* Sidebar button hover fix for dark mode */
+.dark-sidebar-btn:hover {
+  background-color: #111827 !important; /* Tailwind's bg-gray-900 */
+  color: #fff !important;
+}

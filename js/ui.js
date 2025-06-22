@@ -358,13 +358,12 @@ document.addEventListener('DOMContentLoaded', () => {
   function updateSidebarButtonHover() {
     const sidebarButtons = sidebar ? sidebar.querySelectorAll('nav button') : [];
     sidebarButtons.forEach(btn => {
-      btn.classList.remove('hover:bg-gray-100', 'hover:bg-gray-700');
+      btn.classList.remove('hover:bg-gray-100', 'hover:bg-gray-700', 'dark-sidebar-btn');
       if (document.body.classList.contains('bg-gray-900')) {
-        btn.classList.add('hover:bg-gray-700');
-        btn.classList.remove('hover:bg-gray-100');
+        btn.classList.add('dark-sidebar-btn');
       } else {
+        btn.classList.remove('dark-sidebar-btn');
         btn.classList.add('hover:bg-gray-100');
-        btn.classList.remove('hover:bg-gray-700');
       }
     });
   }
