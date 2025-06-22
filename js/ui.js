@@ -24,7 +24,11 @@ document.addEventListener('DOMContentLoaded', () => {
   function updateTimerUI() {
     const timer = getTimer();
     if (timerDisplay) timerDisplay.textContent = formatTime(timer.secondsLeft);
-    if (pomodoroCount) pomodoroCount.textContent = timer.pomodorosCompleted;
+    // Show number of completed tasks
+    if (pomodoroCount) {
+      const completedTasks = getCompletedTasks();
+      pomodoroCount.textContent = completedTasks.length;
+    }
     if (startBtn) startBtn.disabled = timer.isRunning;
     if (pauseBtn) pauseBtn.disabled = !timer.isRunning;
   }
@@ -407,43 +411,19 @@ document.addEventListener('DOMContentLoaded', () => {
             // If timer.js is in global scope, increment global session count
             window.TIMER_MODES.sessionCount = (window.TIMER_MODES.sessionCount || 0) + 1;
           }
-          if (task.pomodorosCompleted >= (task.pomodoros || 1)) {
-            task.completed = true;
-          }
-          updateTask(task);
-          renderTasks();
-          updateTimerUI(); // Ensure session count updates in UI
         }
       }
-      // Also increment timer's sessionCount
-      if (typeof getTimer === 'function') {
-        const timer = getTimer();
-        timer.sessionCount = (timer.sessionCount || 0) + 1;
-      }
-      // Auto-start next session if enabled
-      const settings = getSettings();
-      autoStartNextSession(settings);
-      updateTimerUI();
     });
   }
 
   if (endSessionBtn) {
     endSessionBtn.addEventListener('click', () => {
+      // Just pause the timer and don't record the session
       pauseTimer();
-      resetTimer();
-      updateTimerUI(); // Ensure session count updates in UI
-      // Do not record session
     });
   }
 
-  // Call updateSidebarButtonHover on theme change and on load
-  updateSidebarButtonHover();
-  applySettings = (function(origApplySettings) {
-    return function() {
-      origApplySettings();
-      updateSidebarButtonHover();
-    };
-  })(applySettings);
-
+  // --- Initial Settings Application ---
   applySettings();
+  renderTasks();
 });
