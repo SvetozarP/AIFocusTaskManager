@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pomodoro Focus To-Do Manager</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 text-gray-900 min-h-screen">
+  <div id="app" class="min-h-screen flex flex-col md:flex-row">
+    <!-- Sidebar -->
+    <aside id="sidebar" class="w-full md:w-64 bg-white border-r flex flex-col p-4">
+      <nav class="flex-1">
+        <ul class="space-y-2">
+          <li><button class="w-full flex items-center gap-2 px-3 py-2 rounded hover:bg-gray-100"><span class="material-icons text-blue-500">today</span>Today</button></li>
+          <li><button class="w-full flex items-center gap-2 px-3 py-2 rounded hover:bg-gray-100"><span class="material-icons text-green-500">event</span>Upcoming</button></li>
+          <li><button class="w-full flex items-center gap-2 px-3 py-2 rounded hover:bg-gray-100"><span class="material-icons text-purple-500">list</span>All Tasks</button></li>
+          <li><button class="w-full flex items-center gap-2 px-3 py-2 rounded hover:bg-gray-100"><span class="material-icons text-gray-400">check_circle</span>Completed</button></li>
+        </ul>
+      </nav>
+      <button class="mt-6 w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition">+ Add Task</button>
+      <!-- Optional: Projects section here -->
+    </aside>
+    <!-- Main Panel -->
+    <main id="main-panel" class="flex-1 flex flex-col items-center p-6 bg-gray-50">
+      <!-- Pomodoro Timer -->
+      <section class="w-full max-w-md flex flex-col items-center mb-8">
+        <div class="flex justify-center gap-4 mb-4">
+          <button class="focus-tab px-6 py-2 rounded-full font-semibold shadow bg-blue-500 text-white border-2 border-blue-600 transition hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400">Focus</button>
+          <button class="shortbreak-tab px-6 py-2 rounded-full font-semibold shadow bg-green-500 text-white border-2 border-green-600 transition hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400">Short Break</button>
+          <button class="longbreak-tab px-6 py-2 rounded-full font-semibold shadow bg-purple-500 text-white border-2 border-purple-600 transition hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-400">Long Break</button>
+        </div>
+        <div class="relative flex flex-col items-center">
+          <div class="w-48 h-48 rounded-full border-8 border-blue-400 flex items-center justify-center text-5xl font-bold bg-white shadow-inner" id="timer-display">25:00</div>
+          <div class="flex gap-4 mt-6">
+            <button id="start-timer" class="bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600 transition">Start</button>
+            <button id="pause-timer" class="bg-gray-300 text-gray-700 px-6 py-2 rounded hover:bg-gray-400 transition" disabled>Pause</button>
+            <button id="reset-timer" class="bg-gray-100 text-gray-700 px-6 py-2 rounded hover:bg-gray-200 transition">Reset</button>
+          </div>
+          <div class="mt-4 text-lg text-gray-600">Session: <span id="pomodoro-count">0</span> 🍅</div>
+        </div>
+        <div class="flex gap-4 mt-6">
+          <button id="start-session" class="bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600 transition">Start Session</button>
+          <button id="complete-session" class="bg-green-500 text-white px-6 py-2 rounded hover:bg-green-600 transition">Complete Session</button>
+          <button id="end-session" class="bg-gray-400 text-white px-6 py-2 rounded hover:bg-gray-500 transition">End Session</button>
+        </div>
+      </section>
+      <!-- Task List -->
+      <section class="w-full max-w-md">
+        <div class="flex items-center mb-4">
+          <input id="task-input" type="text" placeholder="Add a task, press Enter to save" class="flex-1 px-3 py-2 border rounded shadow-sm focus:outline-none focus:ring" />
+        </div>
+        <ul id="task-list" class="space-y-2">
+          <!-- Tasks will be rendered here -->
+        </ul>
+      </section>
+    </main>
+    <!-- Settings/Detail Panel -->
+    <aside id="settings-panel" class="w-full md:w-80 bg-white border-l p-4 hidden md:block">
+      <h2 class="text-xl font-semibold mb-4">Settings</h2>
+      <div class="space-y-4">
+        <div>
+          <label class="flex items-center gap-2">
+            <input type="checkbox" id="toggle-dark" class="form-checkbox" />
+            Dark Theme
+          </label>
+        </div>
+        <div>
+          <label class="flex items-center gap-2">
+            <input type="checkbox" id="toggle-sound" class="form-checkbox" />
+            Sound On
+          </label>
+        </div>
+        <div>
+          <label class="flex items-center gap-2">
+            <input type="checkbox" id="toggle-autostart" class="form-checkbox" />
+            Auto-Start Sessions
+          </label>
+        </div>
+      </div>
+      <!-- Task details will be rendered here when a task is selected -->
+    </aside>
+  </div>
+  <!-- Material Icons CDN for sidebar icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script type="module" src="js/ui.js"></script>
+</body>
+</html>

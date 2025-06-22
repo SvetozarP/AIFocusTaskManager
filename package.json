@@ -1,0 +1,14 @@
+{
+  "name": "aifocus-task-manager",
+  "version": "1.0.0",
+  "description": "Pomodoro Focus To-Do Manager - Vanilla JS, Tailwind CSS, localStorage",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
