@@ -31,3 +31,4 @@ coverage/
 .idea/
 *.sublime-workspace
 *.sublime-project
+*-lock.json
